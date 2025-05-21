@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.client.controller.RegisterController"
+      spacing="15"
+      prefWidth="600"
+      prefHeight="450">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Register New Participant"
+               style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="officeLabel" text="Office: Local Office"
+               style="-fx-font-size: 12;"/>
+    </HBox>
+
+    <Separator/>
+
+    <GridPane vgap="10" hgap="10">
+        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200"/>
+
+        <Label text="Age:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="ageField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Label text="Select Events (Double-click to move):"
+           style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" VBox.vgrow="ALWAYS">
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Label text="Available Events:"/>
+            <ListView fx:id="availableEventsList" VBox.vgrow="ALWAYS"/>
+        </VBox>
+
+        <VBox spacing="10" alignment="CENTER" minWidth="80">
+            <Button text="&gt;&gt;" onAction="#addSelectedEvent"/>
+            <Button text="&lt;&lt;" onAction="#removeSelectedEvent"/>
+        </VBox>
+
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Label text="Selected Events:"/>
+            <ListView fx:id="selectedEventsList" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancel" onAction="#handleCancel" prefWidth="100"/>
+        <Button text="Register" onAction="#handleRegister"
+                prefWidth="100"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

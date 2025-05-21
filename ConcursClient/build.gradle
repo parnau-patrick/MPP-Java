@@ -1,0 +1,52 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+// Repository configuration
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'org.example.client.StartRpcClient'
+}
+
+javafx {
+    version = "17.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+dependencies {
+    implementation project(':ConcursModel')
+    implementation project(':ConcursServices')
+    implementation project(':ConcursNetworking')
+
+    // Add Log4J dependencies explicitly to fix LogManager issue
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+}
+
+// Resources configuration to resolve duplicate issues
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    from('src/main/resources') {
+        include '**/*.fxml'
+        include '**/*.properties'
+        include '**/*.xml'
+    }
+}
+
+// Executable JAR configuration
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    manifest {
+        attributes(
+                'Main-Class': application.mainClass,
+                'Class-Path': configurations.runtimeClasspath.files.collect { it.name }.join(' ')
+        )
+    }
+
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.client.controller.LoginController"
+      spacing="20"
+      alignment="CENTER"
+      prefWidth="400"
+      prefHeight="300"
+      style="-fx-background-color: #f4f4f4;">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Swimming Competition Registration System"
+           style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+    <Label text="Please login to continue"
+           style="-fx-font-size: 12;"/>
+
+    <GridPane vgap="10" hgap="10" alignment="CENTER">
+        <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="loginButton"
+                text="Login"
+                onAction="#handleLogin"
+                prefWidth="120"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+
+        <Button fx:id="signUpButton"
+                text="Sign Up"
+                onAction="#openSignUpForm"
+                prefWidth="120"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>

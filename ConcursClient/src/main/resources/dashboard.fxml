@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.client.controller.DashboardController"
+            prefWidth="800"
+            prefHeight="600">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Swimming Competition Dashboard"
+                       style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <VBox alignment="CENTER_RIGHT">
+                    <Label fx:id="welcomeLabel" text="Welcome, User!"
+                           style="-fx-font-size: 14;"/>
+                    <Label fx:id="officeLabel" text="Office: Local Office"
+                           style="-fx-font-size: 12;"/>
+                </VBox>
+
+                <Button text="Logout" onAction="#handleLogout"/>
+            </HBox>
+
+            <Separator/>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane>
+            <Tab text="Events Overview" closable="false">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Events and Participants"
+                               style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Register New Participant"
+                                onAction="#openRegistrationForm"
+                                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+                    </HBox>
+
+                    <TableView fx:id="eventsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="distanceColumn" text="Distance" prefWidth="150"/>
+                            <TableColumn fx:id="styleColumn" text="Style" prefWidth="150"/>
+                            <TableColumn fx:id="participantsColumn" text="Participants" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <Tab text="Search Participants" closable="false">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Select Event:" style="-fx-font-weight: bold;"/>
+                        <ComboBox fx:id="eventComboBox" prefWidth="300"/>
+                    </HBox>
+
+                    <TableView fx:id="participantsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="nameColumn" text="Name" prefWidth="200"/>
+                            <TableColumn fx:id="ageColumn" text="Age" prefWidth="100"/>
+                            <TableColumn fx:id="eventsCountColumn" text="Events Count" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-background-color: #f0f0f0;">
+            <padding>
+                <Insets top="5" right="10" bottom="5" left="10"/>
+            </padding>
+            <Label text="Swimming Competition Registration System © 2023"/>
+        </HBox>
+    </bottom>
+</BorderPane>
