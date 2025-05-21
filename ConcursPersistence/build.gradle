@@ -1,0 +1,27 @@
+plugins {
+    id 'java-library'
+}
+
+// Add repositories section for dependency resolution
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api project(':ConcursModel')
+
+    // JDBC drivers
+    implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+
+    // Password hashing
+    implementation 'org.mindrot:jbcrypt:0.4'
+
+    // Add Log4J dependencies
+    api 'org.apache.logging.log4j:log4j-api:2.14.1'
+    api 'org.apache.logging.log4j:log4j-core:2.14.1'
+}
+
+// Asigurăm ca toate pachetele sunt vizibile pentru alte module
+java {
+    withSourcesJar()
+}
