@@ -1,0 +1,48 @@
+plugins {
+    id 'application'
+}
+
+// Add repositories section for dependency resolution
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'org.example.server.StartRpcServer'
+}
+
+dependencies {
+    implementation project(':ConcursModel')
+    implementation project(':ConcursPersistence')
+    implementation project(':ConcursServices')
+    implementation project(':ConcursNetworking')
+
+    // Add Log4J dependencies
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+}
+
+// Configurare pentru rezolvarea problemei cu duplicate
+processResources {
+    // Specificăm în mod explicit strategia pentru duplicate
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    // Includem fișierele de resurse
+    from('src/main/resources') {
+        include '**/*.properties'
+        include '**/*.xml'
+    }
+}
+
+// Configurare jar executabil
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    manifest {
+        attributes(
+                'Main-Class': application.mainClass,
+                'Class-Path': configurations.runtimeClasspath.files.collect { it.name }.join(' ')
+        )
+    }
+
+}
